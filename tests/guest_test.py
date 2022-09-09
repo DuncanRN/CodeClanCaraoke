@@ -7,10 +7,11 @@ from src.drink import Drink
 class TestGuest(unittest.TestCase):
 
     def setUp(self):
-        self.song_1 = Song("Mitski", "Nobody")
-        self.song_2 = Song("Pixies", "Wave Of Mutliation")
-        self.song_3 = Song("Japandroids", "The House That Heaven Built")
-        
+        self.song_1 = Song("Mitski", "Nobody", "Alternative/Indie", "2018")
+        self.song_2 = Song("Pixies", "Wave Of Mutliation", "Alternative/Indie", "1989")
+        self.song_3 = Song("Japandroids", "The House That Heaven Built", "Alternative/Indie", "2012")
+        self.song_4 = Song("DJ Sabrina the Teenage DJ", "Call You", "Dance/Electronic", "2022")
+
         self.testguest = Guest("Johnny X", 8.50, self.song_1, 19)
         self.room_1 = Room("Room 1", 2, 5.50)
         self.guest_poor = Guest("Poor Vee", 5.50, self.song_2, 18)

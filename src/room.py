@@ -24,24 +24,10 @@ class Room:
     def add_to_bar_tab(self, amount):
         self.bar_tab += amount
 
-        # if self.guest_exists_on_bar_tab(guest_buying):
-        #     # add the amount to this existing tab
-        #     pass
-        # else:
-        #     # create a new dictionary on this list
-        #     self.bar_tab.append({ guest_buying : amount})
-        #     pass
-        # #  self.bar_tab[guest_buying] += amount
+    def get_songs_of_genre(self, genre_to_find):
+        list_to_return=[]
+        for song in self.playlist:
+            if song.genre == genre_to_find:
+                list_to_return.append(song)
 
-    # def guest_exists_on_bar_tab(self, guest):
-    #     if(len(self.bar_tab)) == 0:
-    #         return False
-
-    #     for bar_tab_item in self.bar_tab:
-    #         print("looping")
-    #         print(bar_tab_item)
-
-    # def get_users_bar_tab_in_this_room(self, user_to_check):
-    #     for tab_item in self.bar_tab:
-    #         if tab_item.user_to_check:
-    #             pass
+        return list_to_return
