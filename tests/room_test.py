@@ -11,10 +11,10 @@ class TestRoom(unittest.TestCase):
         self.song_2 = Song("Pixies", "Wave Of Mutliation")
         self.song_3 = Song("Japandroids", "The House That Heaven Built")
 
-        self.guest_1 = Guest("Albert Vee", 60.50, self.song_1)
-        self.guest_2 = Guest("Frank Black", 20.00, self.song_1)
-        self.guest_3 = Guest("Laetitia Sadier", 6.00, self.song_1)
-        self.guest_4 = Guest("Brian King", 3.00, self.song_1)
+        self.guest_1 = Guest("Albert Vee", 60.50, self.song_1, 17)
+        self.guest_2 = Guest("Frank Black", 20.00, self.song_1, 18)
+        self.guest_3 = Guest("Laetitia Sadier", 6.00, self.song_1, 19)
+        self.guest_4 = Guest("Brian King", 3.00, self.song_1, 55)
 
     def test_adding_a_guest_to_a_room(self):
         self.room_1.check_guest_in(self.guest_1)
@@ -63,3 +63,5 @@ class TestRoom(unittest.TestCase):
         self.room_1.add_to_bar_tab(15)
         self.room_1.add_to_bar_tab(25)
         self.assertEqual(40, self.room_1.bar_tab)
+
+    

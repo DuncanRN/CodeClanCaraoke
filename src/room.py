@@ -24,10 +24,6 @@ class Room:
     def add_to_bar_tab(self, amount):
         self.bar_tab += amount
 
-
-
-
-
         # if self.guest_exists_on_bar_tab(guest_buying):
         #     # add the amount to this existing tab
         #     pass
