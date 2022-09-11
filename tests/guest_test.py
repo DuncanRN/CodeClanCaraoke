@@ -27,7 +27,6 @@ class TestGuest(unittest.TestCase):
         self.assertEqual("Johnny X", self.testguest.name)
 
     def test_wallet_change(self):
-        # print("in test wallet change")
         self.room_1.check_guest_in(self.guest_poor)
         self.assertEqual(0, self.guest_poor.wallet)
 

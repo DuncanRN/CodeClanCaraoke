@@ -31,3 +31,43 @@ class Room:
                 list_to_return.append(song)
 
         return list_to_return
+
+    def order_playlist_by_year(self, ascending_order):
+        
+        # self.playlist.sort(key=lambda x: x.year)
+        # for i in range(0, len(self.playlist)):
+        #     print(self.playlist[i].title)
+
+        self.playlist.sort(key=lambda x: x.year, reverse=not ascending_order)
+
+        # for i in range(0, len(self.playlist)):
+        #     print(self.playlist[i].title)
+        
+        return self.playlist
+
+        # from operator import itemgetter 
+        # newlist = sorted(self.playlist, key=itemgetter(-'note','name')
+        # newlist = sorted(self.playlist, key=itemgetter('year')) 
+
+        #  newlist = sorted(self.playlist, key=lambda d: d['year']) 
+        # playlist_by_year=[]
+        # for song in self.playlist:
+        #     print(song.year)
+        #     playlist_by_year[(song.year)]=song
+        # return playlist_by_year
+        # list_to_be_sorted = [{'name':'Bart', 'age':10, 'note':3},{'name':'Homer','age':9,'note':2},{'name':'Vasile','age':20,'note':3}]
+
+        # from operator import attrgetter
+        # # from traceback import print_list
+        # newlist = sorted(self.playlist, key=itemgetter('year')) 
+        # # newlist=self.playlist
+
+        # newlist = sorted(self.playlist, key=lambda x: x.count, reverse=True)
+        # newlist = sorted(self.playlist, key=year )
+
+        # for song in (sorted(self.playlist.values(), key=operator.attrgetter('year'))):
+        #     print(song.title)
+
+        
+
+        # return newlist

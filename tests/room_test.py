@@ -1,4 +1,4 @@
-from traceback import print_list
+# from traceback import print_list
 import unittest
 from src.room import Room
 from src.guest import Guest
@@ -8,10 +8,10 @@ class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room_1 = Room("Room 1", 2, 5.50)
 
-        self.song_1 = Song("Mitski", "Nobody", "Alternative/Indie", "2018")
-        self.song_2 = Song("Pixies", "Wave Of Mutliation", "Alternative/Indie", "1989")
-        self.song_3 = Song("Japandroids", "The House That Heaven Built", "Alternative/Indie", "2012")
-        self.song_4 = Song("DJ Sabrina the Teenage DJ", "Call You", "Dance/Electronic", "2022")
+        self.song_1 = Song("Mitski", "Nobody", "Alternative/Indie", 2018)
+        self.song_2 = Song("Pixies", "Wave Of Mutliation", "Alternative/Indie", 1989)
+        self.song_3 = Song("Japandroids", "The House That Heaven Built", "Alternative/Indie", 2012)
+        self.song_4 = Song("DJ Sabrina the Teenage DJ", "Call You", "Dance/Electronic", 2022)
 
         self.guest_1 = Guest("Albert Vee", 60.50, self.song_1, 17)
         self.guest_2 = Guest("Frank Black", 20.00, self.song_1, 18)
@@ -84,5 +84,31 @@ class TestRoom(unittest.TestCase):
         self.room_1.add_song(self.song_4)
 
         song_list = self.room_1.get_songs_of_genre("Alternative/Indie")
-        # print_list(song_list)
+
         self.assertEqual(3, len(song_list))
+
+    def test_ordering_by_year_asc(self):
+        self.room_1.add_song(self.song_1)
+        self.room_1.add_song(self.song_2)
+        self.room_1.add_song(self.song_3)
+        self.room_1.add_song(self.song_4)
+
+        song_list_by_year = self.room_1.order_playlist_by_year(True)
+
+        self.assertEqual(4, len(song_list_by_year))
+        self.assertEqual(1989, song_list_by_year[0].year)
+        self.assertEqual(2022, song_list_by_year[3].year)
+
+    def test_ordering_by_year_desc(self):
+        self.room_1.add_song(self.song_1)
+        self.room_1.add_song(self.song_2)
+        self.room_1.add_song(self.song_3)
+        self.room_1.add_song(self.song_4)
+
+        song_list_by_year = self.room_1.order_playlist_by_year(False)
+
+        self.assertEqual(4, len(song_list_by_year))
+        self.assertEqual(2022, song_list_by_year[0].year)
+        self.assertEqual(1989, song_list_by_year[3].year)
+
+    
