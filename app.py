@@ -1,4 +1,6 @@
 # from tkinter import Y
+import os
+
 from src.guest import Guest
 from src.room import Room
 from src.song import Song
@@ -16,7 +18,10 @@ map_1_layout=[
             ["W", ".", "1", ".", ".", ".", ".", ".", "B", "W"],
             ["W", ".", "W", "W", "W", "W", "W", "W", "W", "W"],
             ["W", ".", ".", ".", ".", ".", ".", ".", ".", "W"],
-            ["W", "W", "W", "W", "W", "W", "W", "W", "W", "W"]
+            ["W", "W", "W", "W", "W", "W", "W", "W", "2", "W"],
+            ["W", ".", ".", ".", ".", ".", ".", ".", ".", "W"],
+            ["W", "B", ".", ".", "K", ".", ".", ".", ".", "W"],
+            ["W", "W", "W", "W", "W", "W", "W", "W", "W", "W"],
         ]
 
 player_pos = { "x" : 8, "y" : 1}
@@ -28,7 +33,8 @@ song_1 = Song("Mitski", "Nobody", "Alternative/Indie", "2018")
 song_2 = Song("Pixies", "Wave Of Mutliation", "Alternative/Indie", "1989")
 song_3 = Song("Japandroids", "The House That Heaven Built", "Alternative/Indie", "2012")
 song_4 = Song("DJ Sabrina the Teenage DJ", "Call You", "Dance/Electronic", "2022")
-
+song_5 = Song("Can", "Vitamin C", "Krautrock", "1972")
+song_6 = Song("Public Enemy", "Fight The Power", "Hip-Hop", "1990")
 # setup guest
 current_guest = Guest("Johnny X", 8.50, song_1, 19)
 
@@ -46,14 +52,16 @@ room_1.add_song(song_3)
 room_1.add_song(song_4)
 
 
-room_2 = Room("Room 2", 4, 7.50)
+room_2 = Room("Kraut & Hip-Hop", 4, 7.50)
+room_2.add_song(song_5)
+room_2.add_song(song_6)
+
 room_3 = Room("Room 3", 1, 1.50)
-
-
 
 user_input=""
 while user_input != "q":
-
+    
+    os.system('clear') # clears the screen in between refreshes
 
     # get what room we are in
     in_room_1 = False
@@ -83,11 +91,18 @@ while user_input != "q":
             elif user_input == "3":
                 drink_chosen = drink_3
             current_guest.buy_a_drink(room_1, drink_chosen)
-            print("bought a " + drink_chosen.name)
+            print("bought a " + drink_chosen.name) 
+            # Something isn't quite working here, drinks aren't being bought?
         
-        input_options = "1: " + drink_1.name + ", 2: " + drink_2.name + " or 3: " + drink_3.name
+        # WE NEED TO SEPERATE THIS OUT. We are getting to here and catching
+        # the numbered choice they've taken, then we need to skip this input statement
+        # which stops us from loading the map.
+        # maybe push them away from the bar?
+        # NEEDS FIXED HERE
 
-        user_input=input(input_options)
+        # just gonna comment these next two out
+        # input_options = "1: " + drink_1.name + ", 2: " + drink_2.name + " or 3: " + drink_3.name
+        # user_input=input(input_options)
 
     elif currently_on == "K":
         if in_room_1:
@@ -119,9 +134,7 @@ while user_input != "q":
             for song in room_3.playlist:
                 counter += 1
                 song_list = song_list + str(counter) + ": " + song.artist + "- " + song.title + ", "
-
-
-
+        
 
     message_from_move_char = None
     user_input = user_input.lower()
@@ -142,14 +155,22 @@ while user_input != "q":
         for song in room_1.playlist:
             titles_in_playlist += song.artist + "- " + song.title + ", "
         print("in " + room_1.room_name +", Songs: " + titles_in_playlist) 
+        print("")
 
     if room_2.room_contains_guest(current_guest):
         # output_ song list  about_this_room
-        print("in Room 2")
+        titles_in_playlist=""
+        for song in room_2.playlist:
+            titles_in_playlist += song.artist + "- " + song.title + ", "
+        print("in " + room_2.room_name +", Songs: " + titles_in_playlist) 
+        print("")
 
     if room_3.room_contains_guest(current_guest):
-        # output_ song list  about_this_room
-        print("in Room 3")
+        titles_in_playlist=""
+        for song in room_3.playlist:
+            titles_in_playlist += song.artist + "- " + song.title + ", "
+        print("in " + room_3.room_name +", Songs: " + titles_in_playlist) 
+        print("")
 
 
     map_1.output_map_with_player(current_guest)

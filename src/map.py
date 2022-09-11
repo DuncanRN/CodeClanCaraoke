@@ -15,7 +15,7 @@ class Map:
         #     return("W")
         # elif contents_of_loc_user_is_moving_to == "1":
         #///
-        success_message_if_applicable = ""
+        success_message_if_applicable = "" # this passes back result messagees
         x_to_move_to = (self.player_pos["x"] + x_change)
         y_to_move_to = (self.player_pos["y"] + y_change)
         what_we_are_moving_onto = self.map_layout[x_to_move_to][y_to_move_to]
@@ -72,7 +72,8 @@ class Map:
         return self.map_layout[x_to_find][y_to_find]
 
     def output_map_with_player(self, guest):
-        print(f"name: {guest.name}  wallet: {guest.wallet} ")
+        formated_wallet = "{:.2f}".format(guest.wallet)
+        print(f"name: {guest.name}  wallet: {formated_wallet} ")
         # if self.room_contains_guest():
         #     pass
 
