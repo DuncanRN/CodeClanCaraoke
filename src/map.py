@@ -84,11 +84,11 @@ class Map:
                 # print(loc, end = '')
                 # if our player is at this position, add the @ instead
                 if self.player_pos["x"] == x and self.player_pos["y"] == y:
-                    this_row += "@" + " " 
+                    this_row += " " + "@" + " " 
                 elif loc == "W":
-                    this_row += "██"  
+                    this_row += "███"  
                 else:
-                    this_row += loc + " "   
+                    this_row += " " + loc + " "   
 
                 y += 1
             print(this_row)
