@@ -30,6 +30,9 @@ class TestGuest(unittest.TestCase):
         self.room_1.check_guest_in(self.guest_poor)
         self.assertEqual(0, self.guest_poor.wallet)
 
+    def test_get_money(self):
+        self.guest_underage.get_money(50.00)
+        self.assertEqual(60.00, self.guest_underage.wallet)
 
     def test_buy_a_drink_underage(self):
         self.guest_underage.buy_a_drink(self.room_1, self.drink_1)

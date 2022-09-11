@@ -14,6 +14,7 @@ class Room:
             if guest.wallet >= self.cost_of_entry:
                 self.guests_in_room.append(guest)
                 guest.pay_money(self.cost_of_entry)
+                return(True)
 
     def check_guest_out(self, guest):
         self.guests_in_room.remove(guest)
@@ -71,3 +72,11 @@ class Room:
         
 
         # return newlist
+    
+    def room_contains_guest(self, guest_to_find):
+        in_this_room=False
+        for guest in self.guests_in_room:
+            if guest == guest_to_find:
+                in_this_room=True
+        
+        return in_this_room

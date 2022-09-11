@@ -111,4 +111,11 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(2022, song_list_by_year[0].year)
         self.assertEqual(1989, song_list_by_year[3].year)
 
-    
+    def test_room_contains_guest_True(self):
+        self.room_1.check_guest_in(self.guest_1)
+        self.assertEqual(True, self.room_1.room_contains_guest(self.guest_1))
+
+    def test_room_contains_guest_False(self):
+        self.room_1.check_guest_in(self.guest_1)
+        self.room_1.check_guest_in(self.guest_2)
+        self.assertEqual(False, self.room_1.room_contains_guest(self.guest_3))
